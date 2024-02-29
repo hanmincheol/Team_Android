@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "592030706613",
+    "project_id": "tablayoutviewpager16",
+    "storage_bucket": "tablayoutviewpager16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592030706613:android:48ef3eae2cb077f74187fc",
+        "android_client_info": {
+          "package_name": "com.ict.tablayoutviewpager16"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEmUtKgTB0YVWfyNMCqaRwc4SuPM1y6KQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
