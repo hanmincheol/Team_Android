@@ -1,6 +1,11 @@
 package com.ict.tablayoutviewpager16.data.model;
 
-public class Diets {
+import java.io.Serializable;
+
+import lombok.Getter;
+import lombok.Setter;
+
+public class Diets implements Serializable {
 
     public String getPrice() {
         return Price;
@@ -38,6 +43,7 @@ public class Diets {
     public String toString() {
         return Title;
     }
+
 
     public Diets(String Title, String ImagePath, double Star, String Price) {
     }

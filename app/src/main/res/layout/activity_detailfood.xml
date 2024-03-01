@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/imageView10"
+                    android:id="@+id/picDetailFood"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:scaleType="centerCrop"
@@ -32,11 +32,12 @@
                     android:id="@+id/favBtn"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="16dp"
                     android:src="@drawable/favorite_white"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+                    app:layout_constraintBottom_toBottomOf="@+id/picDetailFood"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+                    app:layout_constraintTop_toBottomOf="@+id/picDetailFood"
+                    app:layout_constraintVertical_bias="0.072" />
 
                 <ImageView
                     android:id="@+id/backBtn"
@@ -106,13 +107,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="5 rating"
-                    tools:layout_editor_absoluteX="181dp"
-                    tools:layout_editor_absoluteY="9dp" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/ratingBar2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="350dp"
                 android:layout_marginTop="18dp"
                 android:background="#ECE4FA"
                 android:orientation="vertical">
@@ -135,7 +138,7 @@
                 <ListView
                     android:id="@+id/contentRecipefood"
                     android:layout_width="380dp"
-                    android:layout_height="200dp"
+                    android:layout_height="350dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"

@@ -1,6 +1,7 @@
 package com.ict.tablayoutviewpager16.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ict.tablayoutviewpager16.Detailfood;
 import com.ict.tablayoutviewpager16.R;
 import com.ict.tablayoutviewpager16.data.model.Diets;
 
@@ -41,6 +43,12 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.viewholder> {
 //                .load(items.get(position).getImagePath())//
 //                .transform(new CenterCrop(),new RoundedCorners(30))
 //                .into(holder.pic);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent=new Intent(context, Detailfood.class);
+            intent.putExtra("object",items.get(position));
+            context.startActivity(intent);
+        });
     }
 
     @Override

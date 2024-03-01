@@ -1,6 +1,7 @@
 package com.ict.tablayoutviewpager16.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ict.tablayoutviewpager16.DetailExercise;
+import com.ict.tablayoutviewpager16.Detailfood;
 import com.ict.tablayoutviewpager16.R;
 import com.ict.tablayoutviewpager16.data.model.Training;
 
@@ -35,6 +38,12 @@ public class TrainAdapter extends RecyclerView.Adapter<TrainAdapter.viewholder> 
     public void onBindViewHolder(@NonNull TrainAdapter.viewholder holder, int position) {
         holder.userid.setText(items.get(position).getId()+"goyounjoung");
         holder.pic.setImageResource(R.drawable.muscular2);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent=new Intent(context, DetailExercise.class);
+            intent.putExtra("object",items.get(position));
+            context.startActivity(intent);
+        });
     }
 
     @Override

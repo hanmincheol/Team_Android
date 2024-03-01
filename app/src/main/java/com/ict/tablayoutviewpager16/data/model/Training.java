@@ -1,6 +1,8 @@
 package com.ict.tablayoutviewpager16.data.model;
 
-public class Training {
+import java.io.Serializable;
+
+public class Training implements Serializable {
 
     private String id;
     private String Imgpath;

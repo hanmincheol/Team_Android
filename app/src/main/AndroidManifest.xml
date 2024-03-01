@@ -22,6 +22,9 @@
             android:name=".Detailfood"
             android:exported="false" />
         <activity
+            android:name=".DetailExercise"
+            android:exported="false" />
+        <activity
             android:name=".MyPage"
             android:exported="false" />
 
