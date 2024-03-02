@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.ict.tablayoutviewpager16.R;
 import com.ict.tablayoutviewpager16.data.model.Post;
 
@@ -33,9 +36,12 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.view
 
     @Override
     public void onBindViewHolder(@NonNull CommunityAdapter.viewholder holder, int position) {
-        holder.userid.setText(items.get(position).getId()+"goyounjoung");
-        holder.content.setText(items.get(position).getContent()+"일단 아무말이나 적어야지");
-        holder.pic.setImageResource(R.drawable.go);
+        holder.userid.setText(items.get(position).getId());
+        holder.content.setText(items.get(position).getContent());
+        Glide.with(context)
+                .load(items.get(position).getProfilepath())//
+                .transform(new CenterCrop(),new RoundedCorners(30))
+                .into(holder.profile);
     }
 
     @Override
@@ -47,11 +53,13 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.view
         TextView userid;
         TextView content;
         ImageView pic;
+        ImageView profile;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             userid=itemView.findViewById(R.id.detailviewitem_profile_textview);
             content=itemView.findViewById(R.id.detailviewitem_explain_textview);
 
+            profile = itemView.findViewById(R.id.detailviewitem_profile_image);
             pic = itemView.findViewById(R.id.detailviewitem_imageview_content);
         }
     }

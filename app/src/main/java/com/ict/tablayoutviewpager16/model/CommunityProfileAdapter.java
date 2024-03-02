@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.ict.tablayoutviewpager16.R;
 import com.ict.tablayoutviewpager16.data.model.Profile;
 
@@ -33,8 +36,13 @@ public class CommunityProfileAdapter extends RecyclerView.Adapter<CommunityProfi
 
     @Override
     public void onBindViewHolder(@NonNull CommunityProfileAdapter.viewholder holder, int position) {
-        holder.userid.setText(items.get(position).getId()+"goyounjoung");
-        holder.pic.setImageResource(R.drawable.go);
+        holder.userid.setText(items.get(position).getId());
+        Glide.with(context)
+                .load(items.get(position).getProfilePath())//
+                .transform(new CenterCrop(),new RoundedCorners(30))
+                .into(holder.pic);
+
+
     }
 
     @Override
@@ -44,12 +52,11 @@ public class CommunityProfileAdapter extends RecyclerView.Adapter<CommunityProfi
 
     public class viewholder extends RecyclerView.ViewHolder{
         TextView userid;
-        TextView content;
         ImageView pic;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             userid=itemView.findViewById(R.id.detailviewitem_profile_id);
-            pic = itemView.findViewById(R.id.detailviewitem_profile_image);
+            pic = itemView.findViewById(R.id.detailviewitem_profile_image_small);
         }
     }
 }

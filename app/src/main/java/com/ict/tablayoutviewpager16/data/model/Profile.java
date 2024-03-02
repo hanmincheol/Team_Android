@@ -3,7 +3,7 @@ package com.ict.tablayoutviewpager16.data.model;
 public class Profile {
 
     private String id;
-    private String Imgpath;
+    private String profilePath;
 
     public String getId() {
         return id;
@@ -13,14 +13,14 @@ public class Profile {
         this.id = id;
     }
 
-    public String getImgpath() {
-        return Imgpath;
+    public String getProfilePath() {
+        return profilePath;
     }
 
-    public void setImgpath(String imgpath) {
-        Imgpath = imgpath;
+    public void setProfilePath(String profilePath) {
+        profilePath = profilePath;
     }
 
-    public Profile(String id, String imgpath) {
+    public Profile(String id, String profilePath) {
     }
 }

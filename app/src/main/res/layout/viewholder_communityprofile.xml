@@ -8,7 +8,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_gravity="center"
-            android:id="@+id/detailviewitem_profile_image"
+            android:id="@+id/detailviewitem_profile_image_small"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/go" />
