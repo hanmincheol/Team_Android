@@ -7,49 +7,34 @@ import lombok.Setter;
 
 public class Diets implements Serializable {
 
-    public String getPrice() {
-        return Price;
+    public String getEating_foodname() {
+        return eating_foodname;
     }
 
-    public void setPrice(String price) {
-        Price = price;
+    public void setEating_foodname(String eating_foodname) {
+        this.eating_foodname = eating_foodname;
     }
 
-    public String getImagePath() {
-        return ImagePath;
+    public String getRecipe_img() {
+        return recipe_img;
     }
 
-    public void setImagePath(String imagePath) {
-        ImagePath = imagePath;
+    public void setRecipe_img(String recipe_img) {
+        this.recipe_img = recipe_img;
     }
 
-    public double getStar() {
-        return Star;
+    public String getRecipe_title() {
+        return recipe_title;
     }
 
-    public void setStar(double star) {
-        Star = star;
+    public void setRecipe_title(String recipe_title) {
+        this.recipe_title = recipe_title;
     }
 
-    public String getTitle() {
-        return Title;
+    public Diets(String eating_foodname, String recipe_img, String recipe_title) {
     }
 
-    public void setTitle(String title) {
-        Title = title;
-    }
-
-    @Override
-    public String toString() {
-        return Title;
-    }
-
-
-    public Diets(String Title, String ImagePath, double Star, String Price) {
-    }
-
-    private String Price;
-    private String ImagePath;
-    private double Star;
-    private String Title;
+    private String eating_foodname;
+    private String recipe_img;
+    private String recipe_title;
 }

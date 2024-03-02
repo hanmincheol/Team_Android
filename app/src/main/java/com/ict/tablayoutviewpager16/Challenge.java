@@ -57,7 +57,7 @@ public class Challenge extends AppCompatActivity {
         });
 
         // URL 로드
-        webView.loadUrl("http://192.168.0.107:3333/apps/challengelist");
+        webView.loadUrl("http://192.168.0.107:3333/login");
 
         // ActionBar 숨기기
         ActionBar actionBar = getSupportActionBar();

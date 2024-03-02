@@ -27,14 +27,13 @@ public class Detailfood extends AppCompatActivity {
     private void setVariable() {
         binding.backBtn.setOnClickListener(v -> finish());
 
-        binding.picDetailFood.setImageResource(R.drawable.veggieroll);
-//        Glide.with(Detailfood.this)
-//                .load(object.getImagePath()+R.drawable.go)
-//                .into(binding.picDetailFood);
+//        binding.picDetailFood.setImageResource(R.drawable.veggieroll);
+        Glide.with(Detailfood.this)
+                .load(object.getRecipe_img())
+                .into(binding.picDetailFood);
 
-        binding.kcalDetailFood.setText(object.getPrice()+"3억");
-        binding.titleDetailfood.setText(object.getTitle()+"veggieroll");
-        binding.ratingBar2.setRating((float) (object.getStar()+2.5));
+        binding.kcalDetailFood.setText(object.getRecipe_title());
+        binding.titleDetailfood.setText(object.getEating_foodname());
     }
 
     private void getIntentExtra() {

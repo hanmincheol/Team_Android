@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.ict.tablayoutviewpager16.Detailfood;
 import com.ict.tablayoutviewpager16.R;
 import com.ict.tablayoutviewpager16.data.model.Diets;
@@ -35,14 +38,13 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.viewholder> {
 
     @Override
     public void onBindViewHolder(@NonNull DietAdapter.viewholder holder, int position) {
-        holder.titleTxt.setText(items.get(position).getTitle());//
-        holder.calorieTxt.setText(items.get(position).getPrice()+"Kcal");//
-        holder.starTxt.setText(""+items.get(position).getStar());//
-        holder.pic.setImageResource(R.drawable.veggieroll);
-//        Glide.with(context)
-//                .load(items.get(position).getImagePath())//
-//                .transform(new CenterCrop(),new RoundedCorners(30))
-//                .into(holder.pic);
+        holder.titleTxt.setText(items.get(position).getEating_foodname());//
+//        holder.calorieTxt.setText(items.get(position).getRecipe_title());//
+//        holder.pic.setImageResource(R.drawable.veggieroll);
+        Glide.with(context)
+                .load(items.get(position).getRecipe_img())//
+                .transform(new CenterCrop(),new RoundedCorners(30))
+                .into(holder.pic);
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent=new Intent(context, Detailfood.class);
@@ -57,12 +59,11 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.viewholder> {
     }
 
     public class viewholder extends RecyclerView.ViewHolder{
-        TextView titleTxt,starTxt,calorieTxt;
+        TextView titleTxt ,calorieTxt;
         ImageView pic;
         public viewholder(@NonNull View itemView) {
             super(itemView);
             titleTxt=itemView.findViewById(R.id.titleTxt);
-            starTxt=itemView.findViewById(R.id.starTxt);
             calorieTxt=itemView.findViewById(R.id.calorieTxt);
             pic = itemView.findViewById(R.id.pic);
         }
