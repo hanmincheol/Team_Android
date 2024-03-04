@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ict.tablayoutviewpager16.ApiService;
 import com.ict.tablayoutviewpager16.LocalStorage;
+import com.ict.tablayoutviewpager16.Login;
 import com.ict.tablayoutviewpager16.MyPage;
 import com.ict.tablayoutviewpager16.OnDataActivityTransferListener;
 import com.ict.tablayoutviewpager16.R;
@@ -41,6 +43,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 //1]Fragement상속
 //※androidx.fragment.app.Fragment 상속
@@ -75,9 +78,19 @@ public class Content5 extends Fragment implements Content2.OnDataTransferListene
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // LoginActivity로 이동
-                Intent intent = new Intent(getActivity(), MyPage.class);
-                startActivity(intent);
+                // Fragment가 연결된 Context를 사용하여 SharedPreferences에서 아이디를 가져옴
+                String username = LocalStorage.getUsername(context);
+
+                if (username != null) {
+                    // 로컬 스토리지에 아이디가 있을 경우 MyPage로 이동
+                    Intent intent = new Intent(getActivity(), MyPage.class);
+                    startActivity(intent);
+                } else {
+                    // 로컬 스토리지에 아이디가 없을 경우 LoginActivity로 이동
+                    Toast.makeText(getContext(), "로그인 후 이용하세요", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), Login.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -138,24 +151,47 @@ public class Content5 extends Fragment implements Content2.OnDataTransferListene
         communityProfileAdapter = new CommunityProfileAdapter(profileItems);
         recyclerViewprofile.setAdapter(communityProfileAdapter);
 
-        List<String> temp = new ArrayList<>();
+        Retrofit retrofitPro = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.107:4000/")
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build();
 
+        ApiService apiServicePro = retrofitPro.create(ApiService.class);
         String username = LocalStorage.getUsername(context);
-        temp.add(username);
 
-        Map<String, Object> requestBodyPro = new HashMap<>();
-        requestBodyPro.put("ids", temp);
-
-        Call<List<Profile>> callPro = apiService.updateUserProfile(requestBodyPro);
-        callPro.enqueue(new Callback<List<Profile>>() {
-
+        Call<Map<String, Object>> callPro = apiServicePro.updateUserProfile(username);
+        callPro.enqueue(new Callback<Map<String, Object>>() {
             @Override
-            public void onResponse(Call<List<Profile>> call, Response<List<Profile>> response) {
+            public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Profile","response.body가 이건가"+response.body().toString());
+                    Map<String, Object> responseData = response.body();
+                    Log.d("Profile","responseData가 이건가"+responseData);
 
+                    List<Map<String, Object>> subTo = (List<Map<String, Object>>) responseData.get("subTo");
+                    for (Map<String, Object> map : subTo) {
+                        Profile profile = new Profile();
+                        profile.setSubscribeId((String) map.get("subscribe_id"));
+                        profile.setName((String) map.get("name"));
+                        profile.setProfilePath((String) map.get("profilePath"));
+                        // 맵으로부터 받은 데이터를 적절한 타입으로 변환하여 설정해야 합니다.
+                        profile.setFNum(String.valueOf(map.get("fnum")));
+                        profile.setMNum(String.valueOf(map.get("mnum")));
+                        profile.setSNum(String.valueOf(map.get("snum")));
+                        profileItems.add(profile);
+                        Log.e("Profile","ProfileItems"+profile);
+                    }
+
+                    // RecyclerView에 변경된 데이터를 반영하기 위해 어댑터에 알림
+                    communityProfileAdapter.notifyDataSetChanged();
+                } else {
+                    // 서버 응답이 실패한 경우에 대한 처리
+                    Log.e("Profile", response.message());
+                }
             }
 
             @Override
-            public void onFailure(Call<List<Profile>> callPro, Throwable t) {
+            public void onFailure(Call<Map<String, Object>> call, Throwable t) {
                 // 서버 요청 실패 처리
             }
         });
@@ -189,5 +225,10 @@ public class Content5 extends Fragment implements Content2.OnDataTransferListene
             }
         }
         return null;
+    }
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 }

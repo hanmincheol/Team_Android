@@ -1,28 +1,20 @@
 package com.ict.tablayoutviewpager16.data.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
-public class Training implements Serializable {
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
+public class Training implements Serializable{
+
 
     private String id;
-    private String Imgpath;
+    private String eName;
+    private String eVideoPath;
+    private String eContent;
+    private String eType;
+    private String postDate;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getImgpath() {
-        return Imgpath;
-    }
-
-    public void setImgpath(String imgpath) {
-        Imgpath = imgpath;
-    }
-
-    public Training(String id, String imgpath) {
-    }
 }

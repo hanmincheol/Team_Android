@@ -5,10 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PhotoMyPage {
-
-    private String Imgpath;
-
-    public PhotoMyPage(String 밥) {
-    }
+public class UserProfileFriend {
+    private String f;
+    private String m;
+    private String s;
 }

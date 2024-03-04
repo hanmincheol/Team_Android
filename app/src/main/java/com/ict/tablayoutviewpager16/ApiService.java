@@ -1,10 +1,12 @@
 package com.ict.tablayoutviewpager16;
 
 import com.ict.tablayoutviewpager16.data.model.Diets;
+import com.ict.tablayoutviewpager16.data.model.MemberDto;
 import com.ict.tablayoutviewpager16.data.model.Post;
-import com.ict.tablayoutviewpager16.data.model.Profile;
+import com.ict.tablayoutviewpager16.data.model.ProfileUser;
+import com.ict.tablayoutviewpager16.data.model.Training;
+import com.ict.tablayoutviewpager16.data.model.UserProfileFriend;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,9 +17,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
 
 public interface ApiService {
     @FormUrlEncoded
@@ -29,12 +29,21 @@ public interface ApiService {
 
     @GET("http://192.168.0.107:4000/Dietfood/DailyView.do")
     Call<List<Diets>> getDailyDiet(@Query("id") String id);
+    @Headers("Content-Type: application/json")
+    @POST("http://192.168.0.107:4000/exer/getData.do")
+    Call<List<Training>> getData(@Body Map<String, String> requestBody);
 
+    @GET("http://192.168.0.107:4000/comm/profile")
+    Call<ProfileUser> userProfile(@Query("id") String id);
 
+    @GET("http://192.168.0.107:4000/user/relationship")
+    Call<Map<String, Integer>> userProfileFriend(@Query("id") String id);
+
+    @GET("/user/View")
+    Call<MemberDto> getUserData(@Query("id") String id);
 
     @POST("bbs/List.do")
     Call<List<Post>> getCommPosts(@Body Map<String, List<String>> selectedItems);
-    @Headers("Content-Type: application/json")
-    @POST("bbs/userProfile")
-    Call<List<Profile>> updateUserProfile(@Body Map<String, Object> requestBody);
+    @GET("http://192.168.0.107:4000/comm/subscribe")
+    Call<Map<String, Object>> updateUserProfile(@Query("id") String id);
 }

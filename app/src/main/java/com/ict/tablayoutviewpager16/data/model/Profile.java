@@ -1,26 +1,20 @@
 package com.ict.tablayoutviewpager16.data.model;
 
+import com.google.gson.annotations.SerializedName;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Profile {
 
-    private String id;
+    @SerializedName("subscribe_id")
+    private String subscribeId;
+    private String name;
     private String profilePath;
+    private String fNum;
+    private String mNum;
+    private String sNum;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getProfilePath() {
-        return profilePath;
-    }
-
-    public void setProfilePath(String profilePath) {
-        profilePath = profilePath;
-    }
-
-    public Profile(String id, String profilePath) {
-    }
 }

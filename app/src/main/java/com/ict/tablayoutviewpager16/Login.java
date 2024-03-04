@@ -107,12 +107,9 @@ public class Login extends AppCompatActivity {
         LocalStorage.setUsername(getApplicationContext(), username);
         LocalStorage.setToken(getApplicationContext(), token);
 
-
-        Intent intent = new Intent(Login.this, MainActivity.class); // 회원가입 페이지로
-        startActivity(intent); // 액티비티 이동
-
-        // 로그아웃 시 로컬 저장소의 모든 정보 삭제
-//        LocalStorage.clear(getApplicationContext());
+        // 다음 화면으로 이동
+        Intent intent = new Intent(Login.this, MainActivity.class);
+        startActivity(intent);
     }
 
     private void handleLoginFailure() {

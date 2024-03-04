@@ -2,15 +2,23 @@ package com.ict.tablayoutviewpager16.model;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.ict.tablayoutviewpager16.DetailExercise;
 import com.ict.tablayoutviewpager16.Detailfood;
 import com.ict.tablayoutviewpager16.R;
@@ -36,8 +44,17 @@ public class TrainAdapter extends RecyclerView.Adapter<TrainAdapter.viewholder> 
 
     @Override
     public void onBindViewHolder(@NonNull TrainAdapter.viewholder holder, int position) {
-        holder.userid.setText(items.get(position).getId()+"goyounjoung");
-        holder.pic.setImageResource(R.drawable.muscular2);
+        holder.exerciseid.setText(items.get(position).getEName());
+        holder.eType.setText(items.get(position).getEType());
+
+        String id = items.get(position).getEVideoPath().substring(items.get(position).getEVideoPath().lastIndexOf("/")+1);  //맨마지막 '/'뒤에 id가있으므로 그것만 파싱해줌
+        Log.d("파싱한 아이디id 값", id);
+        String url ="https://img.youtube.com/vi/"+ id+ "/" + "default.jpg";
+
+        Glide.with(context)
+                .load(url)//
+                .transform(new CenterCrop(),new RoundedCorners(30))
+                .into(holder.picVideo);
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent=new Intent(context, DetailExercise.class);
@@ -52,13 +69,14 @@ public class TrainAdapter extends RecyclerView.Adapter<TrainAdapter.viewholder> 
     }
 
     public class viewholder extends RecyclerView.ViewHolder{
-        TextView userid;
-        TextView content;
-        ImageView pic;
+        TextView exerciseid;
+        TextView eType;
+        ImageView picVideo;
         public viewholder(@NonNull View itemView) {
             super(itemView);
-            userid=itemView.findViewById(R.id.titleTRTxt);
-            pic = itemView.findViewById(R.id.pic);
+            exerciseid=itemView.findViewById(R.id.titleTRTxt);
+            eType=itemView.findViewById(R.id.trainingTxt);
+            picVideo = itemView.findViewById(R.id.picVideo);
         }
     }
 }

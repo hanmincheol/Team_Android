@@ -34,7 +34,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.viewholder holder, int position) {
 
-        holder.titleTxt.setText(items.get(position).getName()+".");
+        holder.titleTxt.setText(items.get(position).getName());
 
         switch (position){
             case 0: {
@@ -62,8 +62,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
                 break;
             }
         }
-        holder.pic.setImageResource(R.drawable.btn_1);
-        holder.pic.setBackgroundResource(R.drawable.cat_1_background);
+
     }
 
     @Override

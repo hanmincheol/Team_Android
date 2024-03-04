@@ -54,11 +54,15 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     //lombok
     implementation 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
-
+    //응답을 JSON으로 받을때:jackson converter 사용(자바객체 <---->JSON)
+    implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+    //응답을 String으로 받을때:Scalars 컨버터 사용
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

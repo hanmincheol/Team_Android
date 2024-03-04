@@ -36,7 +36,7 @@ public class CommunityProfileAdapter extends RecyclerView.Adapter<CommunityProfi
 
     @Override
     public void onBindViewHolder(@NonNull CommunityProfileAdapter.viewholder holder, int position) {
-        holder.userid.setText(items.get(position).getId());
+        holder.userid.setText(items.get(position).getSubscribeId());
         Glide.with(context)
                 .load(items.get(position).getProfilePath())//
                 .transform(new CenterCrop(),new RoundedCorners(30))
