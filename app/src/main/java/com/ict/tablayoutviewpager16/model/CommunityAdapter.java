@@ -1,6 +1,7 @@
 package com.ict.tablayoutviewpager16.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.ict.tablayoutviewpager16.DetailCommunity;
+import com.ict.tablayoutviewpager16.Detailfood;
 import com.ict.tablayoutviewpager16.R;
 import com.ict.tablayoutviewpager16.data.model.Post;
 
@@ -47,6 +50,12 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.view
                 .transform(new CenterCrop(),new RoundedCorners(30))
                 .into(holder.profile);
 
+        holder.itemView.setOnClickListener(v->{
+            Intent intent=new Intent(context, DetailCommunity.class);
+            intent.putExtra("object",items.get(position));
+            context.startActivity(intent);
+        });
+
         // Post 객체의 파일 목록을 String 형식으로 변환하여 InnerAdapter에 전달
         List<String> postList = items.get(position).getFiles();
         List<String> fileList = new ArrayList<>();
@@ -71,6 +80,7 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.view
             params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             holder.innerRecyclerView.setLayoutParams(params);
         }
+
     }
 
     @Override

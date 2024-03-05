@@ -19,9 +19,8 @@
             <ImageView
                 android:id="@+id/imgCat"
                 android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:padding="12dp"
-                android:background="@drawable/cat_1_background"
+                android:layout_height="62dp"
+                android:background="@drawable/gray_background"
                 android:layout_gravity="center"
                 android:src="@drawable/btn_1" />
 
@@ -29,9 +28,9 @@
                 android:id="@+id/catName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:text="Title"
-                android:textSize="18sp"
+                android:textSize="11sp"
                 android:textAlignment="center" />
         </LinearLayout>
 

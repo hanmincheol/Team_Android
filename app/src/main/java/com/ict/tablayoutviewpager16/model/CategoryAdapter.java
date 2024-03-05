@@ -38,29 +38,46 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
 
         switch (position){
             case 0: {
-                holder.pic.setBackgroundResource(R.drawable.cat_1_background);
+                holder.titleTxt.setText("다이어트");
+                holder.pic.setImageResource(R.drawable.veggieroll);
                 break;
             }
             case 1: {
-                holder.pic.setBackgroundResource(R.drawable.cat_2_background);
+                holder.titleTxt.setText("영양식");
+                holder.pic.setImageResource(R.drawable.cat2);
                 break;
             }
             case 2: {
-                holder.pic.setBackgroundResource(R.drawable.cat_3_background);
+                holder.titleTxt.setText("양식");
+                holder.pic.setImageResource(R.drawable.cat3);
                 break;
             }
             case 3: {
-                holder.pic.setBackgroundResource(R.drawable.cat_4_background);
+                holder.titleTxt.setText("일상");
+                holder.pic.setImageResource(R.drawable.cat4);
                 break;
             }
             case 4: {
-                holder.pic.setBackgroundResource(R.drawable.cat_5_background);
+                holder.titleTxt.setText("찌개");
+                holder.pic.setImageResource(R.drawable.cat5);
                 break;
             }
             case 5: {
-                holder.pic.setBackgroundResource(R.drawable.cat_6_background);
+                holder.titleTxt.setText("육류");
+                holder.pic.setImageResource(R.drawable.cat6);
                 break;
             }
+            case 6: {
+                holder.titleTxt.setText("셀러드");
+                holder.pic.setImageResource(R.drawable.cat7);
+                break;
+            }
+            case 7: {
+                holder.titleTxt.setText("면류");
+                holder.pic.setImageResource(R.drawable.cat8);
+                break;
+            }
+
         }
 
     }

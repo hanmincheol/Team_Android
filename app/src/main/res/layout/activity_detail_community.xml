@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".DetailCommunity">
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:padding="8dp"
+        android:src="@drawable/arrow"
+        android:background="@drawable/gray_background"
+         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/detcommidprofile"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_margin="7.5dp"
+            android:src="@drawable/go" />
+
+        <TextView
+            android:id="@+id/detcommid"
+            android:layout_width="match_parent"
+            android:text="goyounjong"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detcommimage"
+        android:src="@drawable/go"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"/>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:src="@drawable/baseline_favorite_border_24"
+            android:layout_margin="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"/>
+
+
+    </LinearLayout>
+    <TextView
+        android:id="@+id/detcommlike"
+        android:layout_marginLeft="10dp"
+        android:text="좋아요 "
+        android:textSize="8sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/detailviewitem_explain_textview"
+        android:layout_margin="10dp"
+        android:text="댓글"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/detcomm"
+        android:src="@drawable/go"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"/>
+</LinearLayout>
