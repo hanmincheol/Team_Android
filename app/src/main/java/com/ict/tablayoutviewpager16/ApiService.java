@@ -1,5 +1,6 @@
 package com.ict.tablayoutviewpager16;
 
+import com.ict.tablayoutviewpager16.data.model.BBSDto;
 import com.ict.tablayoutviewpager16.data.model.Diets;
 import com.ict.tablayoutviewpager16.data.model.MemberDto;
 import com.ict.tablayoutviewpager16.data.model.Post;
@@ -44,6 +45,11 @@ public interface ApiService {
 
     @POST("bbs/List.do")
     Call<List<Post>> getCommPosts(@Body Map<String, List<String>> selectedItems);
+
+    @Headers("Content-Type: application/json")
+    @GET("bbs/ViewMy.do")
+    Call<List<BBSDto>> getViewMy(@Query("id") String id);
+
     @GET("http://192.168.0.107:4000/comm/subscribe")
     Call<Map<String, Object>> updateUserProfile(@Query("id") String id);
 }

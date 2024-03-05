@@ -2,15 +2,14 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="350dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:backgroundTint="#EAEAEA"
     android:layout_margin="5dp"
     app:cardElevation="3dp">
 
     <ImageView
-        android:id="@+id/mypagePhoto"
-        android:layout_width="128dp"
-        android:layout_height="140dp"
+        android:id="@+id/postPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
         app:srcCompat="@drawable/gomypage" />
 </androidx.cardview.widget.CardView>

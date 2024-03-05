@@ -6,9 +6,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PhotoMyPage {
+    private String imgpath;
 
-    private String Imgpath;
+    public PhotoMyPage(String imgpath) {
+        this.imgpath = imgpath;
+    }
 
-    public PhotoMyPage(String 밥) {
+    public String getImgpath() {
+        return imgpath;
     }
 }

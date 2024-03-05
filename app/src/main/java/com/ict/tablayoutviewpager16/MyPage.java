@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ict.tablayoutviewpager16.data.model.BBSDto;
 import com.ict.tablayoutviewpager16.data.model.MemberDto;
 import com.ict.tablayoutviewpager16.data.model.PhotoMyPage;
 import com.ict.tablayoutviewpager16.data.model.ProfileUser;
@@ -23,6 +24,7 @@ import com.ict.tablayoutviewpager16.view.Content1;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -195,27 +197,38 @@ public class MyPage extends AppCompatActivity {
         // 다이어트 아이템 생성 (임의의 데이터)
         mypageItems = new ArrayList<>();
         // 필요에 따라 다른 항목 추가
-        mypageItems.add(new PhotoMyPage("밥")); // 나중에 이런 거 다 수정해야함
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
-        mypageItems.add(new PhotoMyPage("밥"));
+        Call<List<BBSDto>> callView = apiService.getViewMy(username);  // id는 필요에 따라 적절한 값으로 설정해야 합니다.
 
+        callView.enqueue(new Callback<List<BBSDto>>() {
+            @Override
+            public void onResponse(Call<List<BBSDto>> call, Response<List<BBSDto>> response) {
+                if (response.isSuccessful()) {
+                    List<BBSDto> mypageItems = response.body();
+                    Log.d("MyPage", "response 마이페이지 파일 데이터 : " + response.body());
+                    ArrayList<PhotoMyPage> photoMyPages = new ArrayList<>();
+                    for (BBSDto bbsDto : mypageItems) {
+                        List<String> files = bbsDto.getFiles();
+                        if (files != null && !files.isEmpty()) {
+                            String firstFile = files.get(0);
+                            photoMyPages.add(new PhotoMyPage(firstFile));
+                            Log.d("MyPage", "response 마이페이지 파일 데이터 : " + firstFile);
+                        } else {
+                            photoMyPages.add(new PhotoMyPage(null));
+                        }
+                    }
+                    // RecyclerView 어댑터 설정
+                    photoMyPageAdapter = new PhotoMyPageAdapter(photoMyPages);
+                    recyclerView.setAdapter(photoMyPageAdapter);
+                } else {
+                    Log.d("MyPage", "response 에러 : " + response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<BBSDto>> call, Throwable t) {
+                Log.e("MyPage","서버요청 에러 내 게시글: "+t.getMessage());
+            }
+        });
 
 
         // 어댑터 설정

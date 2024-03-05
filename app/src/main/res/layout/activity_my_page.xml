@@ -104,7 +104,7 @@
                         android:id="@+id/mypageF"
                         android:layout_width="60dp"
                         android:layout_height="39dp"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="20dp"
                         android:layout_weight="1"
                         android:background="@drawable/mypage_background"
@@ -119,14 +119,14 @@
                         android:id="@+id/mypageS"
                         android:layout_width="60dp"
                         android:layout_height="39dp"
-                        android:layout_marginStart="85dp"
+                        android:layout_marginStart="5dp"
                         android:layout_marginTop="20dp"
                         android:layout_weight="1"
                         android:background="@drawable/mypage_background"
                         android:gravity="center"
                         android:text="236\n팔로워"
                         android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/mypageF"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints" />
 
@@ -134,17 +134,16 @@
                         android:id="@+id/mypageM"
                         android:layout_width="60dp"
                         android:layout_height="39dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="5dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginEnd="15dp"
                         android:layout_weight="1"
-                        android:padding="1dp"
                         android:background="@drawable/mypage_background"
                         android:gravity="center"
+                        android:padding="1dp"
                         android:text="654\n팔로잉"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.45"
+                        app:layout_constraintStart_toEndOf="@+id/mypageS"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints" />
 
@@ -193,6 +192,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginStart="5dp"
                 android:id="@+id/mypagePhotoView"
                 android:layout_weight="0.33"
                 android:layout_width="match_parent"
