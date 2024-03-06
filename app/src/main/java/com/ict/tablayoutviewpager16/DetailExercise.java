@@ -41,6 +41,7 @@ public class DetailExercise extends AppCompatActivity {
                 .into(binding.picDetailExercise);
         binding.titleDetailExercise.setText(object.getEName());
         binding.contentTitleExercise.setText(object.getEType());
+        binding.contentExercise.setText(object.getEContent());
 
     }
 

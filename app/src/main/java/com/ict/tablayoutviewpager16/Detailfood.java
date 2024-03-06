@@ -32,8 +32,10 @@ public class Detailfood extends AppCompatActivity {
                 .load(object.getRecipe_img())
                 .into(binding.picDetailFood);
 
-        binding.kcalDetailFood.setText(object.getRecipe_title());
+        binding.kcalDetailFood.setText(object.getCalory()+"Kcal");
+        binding.subtitleDetailFood.setText(object.getRecipe_title());
         binding.titleDetailfood.setText(object.getEating_foodname());
+        binding.contentRecipefood.setText(object.getRecipe_seq());
     }
 
     private void getIntentExtra() {

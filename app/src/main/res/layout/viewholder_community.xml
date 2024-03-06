@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:backgroundTint="@color/grey"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -23,11 +26,15 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:id="@+id/detailviewitem_imageview_content"
         android:src="@drawable/go"
         android:layout_width="match_parent"
         android:layout_height="350dp"/>
     <LinearLayout
+        android:layout_marginTop="410dp"
         android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -44,17 +51,28 @@
             android:layout_height="35dp"
             android:src="@drawable/baseline_message_24" />
     </LinearLayout>
-    <TextView
-        android:id="@+id/detailviewitem_favoritecounter_textview"
-        android:layout_marginLeft="10dp"
-        android:text="좋아요 "
-        android:textSize="8sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/detailviewitem_explain_textview"
-        android:layout_margin="10dp"
-        android:text="Explain content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="460dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/detailviewitem_favoritecounter_textview"
+            android:layout_marginLeft="10dp"
+            android:text="좋아요 "
+            android:textSize="8sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="480dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/detailviewitem_explain_textview"
+            android:layout_margin="10dp"
+            android:text="Explain content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

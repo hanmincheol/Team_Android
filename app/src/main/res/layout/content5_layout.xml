@@ -4,13 +4,18 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    android:padding="20dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
         >
 
         <TextView
@@ -67,7 +72,7 @@
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
@@ -78,10 +83,13 @@
 
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:id="@+id/eventListProfileView"
-                        android:layout_width="369dp"
-                        android:layout_height="60dp"
-                        >
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:background="@color/grey">
+
                     </androidx.recyclerview.widget.RecyclerView>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>

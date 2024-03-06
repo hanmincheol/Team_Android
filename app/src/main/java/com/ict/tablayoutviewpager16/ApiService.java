@@ -3,6 +3,7 @@ package com.ict.tablayoutviewpager16;
 import com.ict.tablayoutviewpager16.data.model.BBSDto;
 import com.ict.tablayoutviewpager16.data.model.Diets;
 import com.ict.tablayoutviewpager16.data.model.ExerciseRequest;
+import com.ict.tablayoutviewpager16.data.model.FoodListDto;
 import com.ict.tablayoutviewpager16.data.model.MemberDto;
 import com.ict.tablayoutviewpager16.data.model.Post;
 import com.ict.tablayoutviewpager16.data.model.ProfileUser;
@@ -31,6 +32,12 @@ public interface ApiService {
 
     @GET("http://192.168.0.107:4000/Dietfood/DailyView.do")
     Call<List<Diets>> getDailyDiet(@Query("id") String id);
+
+    @Headers("Content-Type: application/json")
+    @GET("/recipe/View.do")
+    Call <List<FoodListDto>> findAllList(@Query("id") String id, @Query("category") String category);
+
+
     @Headers("Content-Type: application/json")
     @POST("http://192.168.0.107:4000/exer/getData.do")
     Call<List<Training>> getData(@Body Map<String, String> requestBody);

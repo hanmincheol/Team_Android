@@ -41,6 +41,8 @@ public class DietAdapter extends RecyclerView.Adapter<DietAdapter.viewholder> {
         holder.titleTxt.setText(items.get(position).getEating_foodname());//
 //        holder.calorieTxt.setText(items.get(position).getRecipe_title());//
 //        holder.pic.setImageResource(R.drawable.veggieroll);
+        holder.calorieTxt.setText(items.get(position).getCalory()+"Kcal");
+
         Glide.with(context)
                 .load(items.get(position).getRecipe_img())//
                 .transform(new CenterCrop(),new RoundedCorners(30))
