@@ -2,6 +2,7 @@ package com.ict.tablayoutviewpager16;
 
 import com.ict.tablayoutviewpager16.data.model.BBSDto;
 import com.ict.tablayoutviewpager16.data.model.Diets;
+import com.ict.tablayoutviewpager16.data.model.ExerciseRequest;
 import com.ict.tablayoutviewpager16.data.model.MemberDto;
 import com.ict.tablayoutviewpager16.data.model.Post;
 import com.ict.tablayoutviewpager16.data.model.ProfileUser;
@@ -52,4 +53,7 @@ public interface ApiService {
 
     @GET("http://192.168.0.107:4000/comm/subscribe")
     Call<Map<String, Object>> updateUserProfile(@Query("id") String id);
+
+    @POST("recommendExercise")
+    Call<Void> recommendExercise(@Body ExerciseRequest request);
 }

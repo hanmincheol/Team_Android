@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,12 +20,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.ict.tablayoutviewpager16.ApiService;
 import com.ict.tablayoutviewpager16.Challenge;
 import com.ict.tablayoutviewpager16.LocalStorage;
 import com.ict.tablayoutviewpager16.Login;
 import com.ict.tablayoutviewpager16.MyPage;
 import com.ict.tablayoutviewpager16.R;
+import com.ict.tablayoutviewpager16.data.model.ExerciseRequest;
 import com.ict.tablayoutviewpager16.data.model.Training;
 import com.ict.tablayoutviewpager16.data.model.YoutubeVideo;
 import com.ict.tablayoutviewpager16.databinding.Content4LayoutBinding;
@@ -70,23 +73,23 @@ public class Content4 extends Fragment implements Content2.OnDataTransferListene
         binding = Content4LayoutBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
 
+        String username = LocalStorage.getUsername(context);
 
         textView = view.findViewById(R.id.challengeMore);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // LoginActivity로 이동
-                Intent intent = new Intent(getActivity(), Challenge.class);
-                startActivity(intent);
+                openDialog();
             }
+
         });
+
 
         imageView = view.findViewById(R.id.mypage);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // SharedPreferences를 사용하여 로컬 스토리지에 저장된 아이디를 가져옴
-                String username = LocalStorage.getUsername(context);
                 if (username != null) {
                     // 로컬 스토리지에 아이디가 있을 경우 MyPage로 이동
                     Intent intent = new Intent(getActivity(), MyPage.class);
@@ -112,7 +115,6 @@ public class Content4 extends Fragment implements Content2.OnDataTransferListene
         Context context = getContext(); // Fragment의 Context 가져오기
 
         // LocalStorage에서 username 가져오기
-        String username = LocalStorage.getUsername(context);
         if (username != null) {
             Log.d("Username", username);
         } else {
@@ -192,6 +194,8 @@ public class Content4 extends Fragment implements Content2.OnDataTransferListene
         }
 
 
+
+
         //3]루트 뷰 반환
         return view;
     }
@@ -227,4 +231,117 @@ public class Content4 extends Fragment implements Content2.OnDataTransferListene
         super.onAttach(context);
         this.context = context;
     }
+
+    private void openDialog() {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getActivity());
+        bottomSheetDialog.setContentView(R.layout.exerciserecomm);
+
+        String username = LocalStorage.getUsername(context);
+
+        LinearLayout exersho = bottomSheetDialog.findViewById(R.id.exersho);
+        LinearLayout exerchest = bottomSheetDialog.findViewById(R.id.exerchest);
+        LinearLayout exersto = bottomSheetDialog.findViewById(R.id.exersto);
+        LinearLayout exerweist = bottomSheetDialog.findViewById(R.id.exerweist);
+        LinearLayout exerarm = bottomSheetDialog.findViewById(R.id.exerarm);
+        LinearLayout exerleg = bottomSheetDialog.findViewById(R.id.exerleg);
+        LinearLayout exerall = bottomSheetDialog.findViewById(R.id.exerall);
+
+        exersho.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "어깨 운동 클릭", Toast.LENGTH_SHORT).show();
+                sendDataToServer("Shoulders",username);
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        exerchest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "가슴 운동 클릭", Toast.LENGTH_SHORT).show();
+                sendDataToServer("Chest",username);
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        exersto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "복부 운동 클릭", Toast.LENGTH_SHORT).show();
+                sendDataToServer("Abdominals",username);
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        exerweist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "허리 운동 클릭", Toast.LENGTH_SHORT).show();
+                sendDataToServer( "Back",username);
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        exerarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "팔 운동 클릭", Toast.LENGTH_SHORT).show();
+                sendDataToServer("arms",username);
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        exerleg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "다리 운동 클릭", Toast.LENGTH_SHORT).show();
+                sendDataToServer( "legs",username);
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+
+
+        exerall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "무작위 운동 클릭", Toast.LENGTH_SHORT).show();
+                sendDataToServer("randam",username);
+                bottomSheetDialog.dismiss();
+            }
+        });
+
+        bottomSheetDialog.show();
+    }
+    private void sendDataToServer(String username, String exerciseType) {
+        ExerciseRequest request = new ExerciseRequest(username, exerciseType);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.0.107:5000/") // 서버 주소
+                .addConverterFactory(GsonConverterFactory.create()) // Gson 변환기 사용
+                .build();
+
+
+        ApiService apiService = retrofit.create(ApiService.class);
+        Call<Void> call = apiService.recommendExercise(request);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    // 서버 응답 성공 처리
+                    Log.d("Recommendation", "Exercise recommendation sent successfully");
+                } else {
+                    // 서버 응답 실패 처리
+                    Log.d("Recommendation", "Failed to send exercise recommendation");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // 네트워크 오류 처리
+                Log.e("Recommendation", "Error sending exercise recommendation: " + t.getMessage());
+            }
+        });
+    }
 }
+
