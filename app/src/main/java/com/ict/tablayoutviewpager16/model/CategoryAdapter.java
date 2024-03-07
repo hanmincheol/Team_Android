@@ -2,6 +2,8 @@ package com.ict.tablayoutviewpager16.model;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +20,16 @@ import com.google.gson.GsonBuilder;
 import com.ict.tablayoutviewpager16.ApiService;
 import com.ict.tablayoutviewpager16.LocalStorage;
 import com.ict.tablayoutviewpager16.R;
+import com.ict.tablayoutviewpager16.RecommFood;
 import com.ict.tablayoutviewpager16.data.model.Category;
 import com.ict.tablayoutviewpager16.data.model.Diets;
 import com.ict.tablayoutviewpager16.data.model.FoodListDto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,6 +42,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
     ArrayList<Category> items;
     Context context;
     private ApiService apiService;
+    RecyclerView recyclerView;
 
     public CategoryAdapter(ArrayList<Category> items){
 
@@ -132,10 +139,24 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
             public void onResponse(Call<List<FoodListDto>> call, Response<List<FoodListDto>> response) {
                 if (response.isSuccessful()) {
                     List<FoodListDto> foodList = response.body();
-                    int dataSize = Math.min(foodList.size(), 5); // 데이터 사이즈와 5 중 작은 값을 취합니다.
-                    List<FoodListDto> firstFiveFoods = foodList.subList(0, dataSize); // 처음부터 5개의 데이터를 가져옵니다.
 
-                    for (FoodListDto food : firstFiveFoods) {
+                    // 중복된 FOODNAME 제거
+                    Set<String> foodNameSet = new HashSet<>();
+                    List<FoodListDto> distinctFoodList = new ArrayList<>();
+                    for (FoodListDto food : foodList) {
+                        if (!foodNameSet.contains(food.getFOODNAME())) {
+                            foodNameSet.add(food.getFOODNAME());
+                            distinctFoodList.add(food);
+                        }
+                    }
+
+                    // 최대 8개의 항목 가져오기
+                    int dataSize = Math.min(distinctFoodList.size(), 8);
+                    List<FoodListDto> firstEightFoods = distinctFoodList.subList(0, dataSize);
+
+                    goToRecommFoodScreen(firstEightFoods);
+
+                    for (FoodListDto food : firstEightFoods) {
                         Log.d("Category", "response Category : " + food);
                     }
                 } else {
@@ -148,6 +169,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
                 Log.e("Category", "response Category : " + t.getMessage());
             }
         });
+    }
+    private void goToRecommFoodScreen(List<FoodListDto> firstFiveFoods) {
+        // 새로운 ArrayList 인스턴스를 생성하여 데이터를 복사합니다.
+        ArrayList<FoodListDto> foodListCopy = new ArrayList<>(firstFiveFoods);
+
+        // RecommFood 화면으로 이동하고, 데이터를 넘겨줍니다.
+        Intent intent = new Intent(context, RecommFood.class);
+        intent.putExtra("foodList", foodListCopy);
+        context.startActivity(intent);
     }
 
     @Override

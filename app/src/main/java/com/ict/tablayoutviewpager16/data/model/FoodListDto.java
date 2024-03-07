@@ -1,5 +1,7 @@
 package com.ict.tablayoutviewpager16.data.model;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,14 +14,14 @@ import retrofit2.http.GET;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FoodListDto {
+public class FoodListDto implements Serializable {
     private String FOODNAME;
     private String DATATYPE;
     private String category;
     private String RECIPE_TITLE;
     private String recipe_url;
     private String RECIPE_IMG;
-    private String RECIPECODE;
+    private int RECIPECODE;
     private String recipe_seq;
     private String INGREDIENT;
     private String RI_AMOUNT;

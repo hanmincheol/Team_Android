@@ -10,6 +10,8 @@ import com.ict.tablayoutviewpager16.data.model.ProfileUser;
 import com.ict.tablayoutviewpager16.data.model.Training;
 import com.ict.tablayoutviewpager16.data.model.UserProfileFriend;
 
+import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -63,4 +65,7 @@ public interface ApiService {
 
     @POST("recommendExercise")
     Call<Void> recommendExercise(@Body ExerciseRequest request);
+
+    @POST("http://192.168.0.107:4000/Dietfood/SaveBulk.do")
+    Call<Void> sendDataToServer(@Body List<Map<String, Object>> dataToSave);
 }
