@@ -75,7 +75,9 @@ public class MyPage extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MyPage.this, Content1.class);
+                // 메인 액티비티를 시작하는 인텐트 생성
+                Intent intent = new Intent(MyPage.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // 메인 액티비티 위에 있는 모든 액티비티를 제거합니다.
                 startActivity(intent);
             }
         });

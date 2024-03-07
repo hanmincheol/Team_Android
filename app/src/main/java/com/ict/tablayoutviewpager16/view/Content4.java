@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.ict.tablayoutviewpager16.ApiService;
@@ -72,6 +73,70 @@ public class Content4 extends Fragment implements Content2.OnDataTransferListene
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = Content4LayoutBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
+
+        SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipeView);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                recyclerView = view.findViewById(R.id.exciseCategoryView); // RecyclerView의 ID를 BestFoodView로 변경
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL,false));
+
+                // 다이어트 아이템 생성 (임의의 데이터)
+                trainingItems = new ArrayList<>();
+                trainAdapter = new TrainAdapter(trainingItems);
+                recyclerView.setAdapter(trainAdapter);
+
+                Context context = getContext(); // Fragment의 Context 가져오기
+                String username = LocalStorage.getUsername(context);
+                // LocalStorage에서 username 가져오기
+                if (username != null) {
+                    Log.d("Username", username);
+                } else {
+                    Log.d("Username", "Username is null");
+                }
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://192.168.0.107:4000/")
+                        .addConverterFactory(JacksonConverterFactory.create())
+                        .build();
+
+                // ApiService 인터페이스의 인스턴스 생성
+                ApiService apiService = retrofit.create(ApiService.class);
+
+                // 요청 본문 데이터 생성
+                Map<String, String> requestBody = new HashMap<>();
+                requestBody.put("id", username);
+
+                // 로그로 요청 본문 데이터 확인
+                Log.d("RequestBody", requestBody.toString());
+
+                Call<List<Training>> call = apiService.getData(requestBody);
+                call.enqueue(new Callback<List<Training>>() {
+                    @Override
+                    public void onResponse(Call<List<Training>> call, Response<List<Training>> response) {
+                        if (response.isSuccessful()) {
+                            // 요청이 성공적으로 처리됨
+                            List<Training> trainingList = response.body();
+                            Log.d("ResponseData", "Training List: " + trainingList);
+                            for(Training training : trainingList){
+                                trainingItems.add(training);
+                                Log.d("ResponseData", "Training List: " + training.getEVideoPath()+"  Etype"+training.getEType()+"  EName"+training.getEName());
+                            }
+                            trainAdapter.notifyDataSetChanged();
+                        } else {
+                            // 요청이 실패한 경우
+                            Log.d("ResponseData:",response.errorBody()+"");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Training>> call, Throwable t) {
+                        Log.d("ResponseData:",t.getMessage());
+                    }
+                });
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         String username = LocalStorage.getUsername(context);
 

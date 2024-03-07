@@ -1,5 +1,6 @@
 package com.ict.tablayoutviewpager16;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,7 +26,12 @@ public class Detailfood extends AppCompatActivity {
     }
 
     private void setVariable() {
-        binding.backBtn.setOnClickListener(v -> finish());
+        binding.backBtn.setOnClickListener(v -> {
+            // 메인 액티비티를 시작하는 인텐트 생성
+            Intent intent = new Intent(Detailfood.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // 메인 액티비티 위에 있는 모든 액티비티를 제거합니다.
+            startActivity(intent);
+        });
 
 //        binding.picDetailFood.setImageResource(R.drawable.veggieroll);
         Glide.with(Detailfood.this)
