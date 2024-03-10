@@ -107,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements Content2.OnDataTr
 
 
 
+
     }////onCreate
     //1번)프래그먼트에서 전송한 데이타를 받기 위한 오버라이딩(내가 만든 이벤트 리스너의 추상 메소드)
     //dataTransfer이벤트 발생시 자동호출

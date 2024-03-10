@@ -31,6 +31,8 @@ import androidx.fragment.app.Fragment;
 
 import com.ict.tablayoutviewpager16.ApiService;
 import com.ict.tablayoutviewpager16.LocalStorage;
+import com.ict.tablayoutviewpager16.Login;
+import com.ict.tablayoutviewpager16.MyPage;
 import com.ict.tablayoutviewpager16.R;
 
 import java.io.ByteArrayOutputStream;
@@ -59,6 +61,7 @@ public class Content3 extends Fragment {
     private Bitmap capturedBitmap;
     private Context context;
     private File capturedImageFile;
+    private ImageView imageView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -103,6 +106,22 @@ public class Content3 extends Fragment {
                     }
                     Log.d("Content3", "pickImageFromGallery() result code: " + result.getResultCode());
                 });
+
+        imageView = view.findViewById(R.id.mypage);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = LocalStorage.getUsername(context);
+                if (username != null) {
+                    Intent intent = new Intent(getActivity(), MyPage.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getContext(), "로그인 후 이용하세요", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), Login.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
         return view;
     }
