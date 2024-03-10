@@ -7,4 +7,74 @@
     android:layout_height="match_parent"
     tools:context=".addPhoto">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      tools:ignore="MissingConstraints">
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:src="@drawable/logo_healtyreal_text"/>
+
+  </LinearLayout>
+
+  <ImageView
+      android:id="@+id/addphoto_image"
+      android:layout_width="match_parent"
+      android:layout_height="400dp"
+      android:layout_centerInParent="true"
+      android:src="@drawable/gomypage"
+      app:layout_constraintBottom_toTopOf="@+id/addphoto_edit_explain"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:ignore="MissingConstraints"
+      tools:layout_editor_absoluteX="1dp" />
+
+  <ImageView
+      android:src="@drawable/ic_menu_gallery"
+      android:id="@+id/addphoto_btn_gallery"
+      android:layout_width="70dp"
+      android:layout_height="70dp"
+      android:layout_marginStart="80dp"
+      android:layout_marginBottom="10dp"
+      android:layout_alignParentBottom="true"
+      android:text="갤러리에서 선택"
+      app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_upload"
+      app:layout_constraintStart_toStartOf="@+id/addphoto_btn_upload" />
+
+
+  <EditText
+      android:id="@+id/addphoto_edit_explain"
+      android:layout_width="match_parent"
+      android:layout_height="80dp"
+      android:layout_above="@id/addphoto_btn_gallery"
+      android:layout_margin="16dp"
+      android:hint="내용을 입력하세요"
+      android:inputType="text"
+      app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_gallery"
+      tools:layout_editor_absoluteX="16dp" />
+
+  <Button
+      android:id="@+id/addphoto_btn_upload"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:background="@color/grey_time"
+      android:text="업로드"
+      app:layout_constraintBottom_toBottomOf="parent" />
+
+  <ImageView
+      android:src="@drawable/ic_menu_camera"
+      android:id="@+id/addphoto_btn_camera"
+      android:layout_width="70dp"
+      android:layout_height="70dp"
+      android:layout_marginEnd="80dp"
+      android:layout_marginBottom="10dp"
+      android:layout_alignParentBottom="true"
+      android:layout_toStartOf="@id/addphoto_btn_gallery"
+      android:layout_toLeftOf="@id/addphoto_btn_gallery"
+      android:text="카메라로 촬영"
+      app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_upload"
+      app:layout_constraintEnd_toEndOf="@+id/addphoto_btn_upload" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

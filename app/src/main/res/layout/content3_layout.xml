@@ -17,11 +17,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="63dp">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,6 +48,7 @@
                     android:text="Welcome"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
+
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="98dp"
@@ -68,115 +70,76 @@
                     app:srcCompat="@drawable/baseline_person_24"
                     tools:ignore="MissingConstraints" />
 
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <LinearLayout
+
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:id="@+id/addphoto_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="horizontal"
-                tools:layout_marginStart="16dp">
-
-                <ImageView
-                    android:id="@+id/filterBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="6dp"
-                    android:layout_weight="1"
-                    android:padding="12dp"
-                    android:background="@drawable/gray_background"
-                    app:srcCompat="@drawable/settings"
-                    app:tint="@color/my_primary" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@drawable/gray_background"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/editTextText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_margin="4dp"
-                        android:layout_weight="1"
-                        android:background="@color/grey"
-                        android:ems="10"
-                        android:hint="Search"
-                        android:inputType="text"
-                        android:padding="8dp"
-                        android:textAlignment="center"
-                        android:textColor="@color/blue_grey"
-                        android:textColorHint="@color/blue_grey"
-                        android:textSize="16sp" />
-
-                    <ImageView
-                        android:id="@+id/searchBtn"
-                        android:layout_width="38dp"
-                        android:layout_height="29dp"
-                        android:layout_gravity="center"
-                        android:padding="4dp"
-                        app:srcCompat="@drawable/search_icon"
-                        app:tint="@color/my_primary" />
-                </LinearLayout>
-
-
-            </LinearLayout>
+                android:layout_height="400dp"
+                android:layout_centerInParent="true"
+                app:layout_constraintBottom_toTopOf="@+id/addphoto_edit_explain"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="1dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-
-                >
+                android:layout_marginTop="10dp">
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="카메라"
-                    android:src="@drawable/camera_icon"
-                    android:textSize="20sp"
-                    android:gravity="center"
-                    android:id="@+id/btnCamera"
-                    android:scaleType="center"
-                    android:layout_marginRight="5dp"
-                    />
+                    android:src="@drawable/ic_menu_gallery"
+                    android:id="@+id/addphoto_btn_gallery"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:text="갤러리에서 선택"
+                    app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_upload"
+                    app:layout_constraintStart_toStartOf="@+id/addphoto_btn_upload" />
                 <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/gallery_icon"
-                    android:textSize="20sp"
-                    android:gravity="center"
+                    android:src="@drawable/ic_menu_camera"
+                    android:id="@+id/addphoto_btn_camera"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="80dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toLeftOf="@id/addphoto_btn_gallery"
+                    android:text="카메라로 촬영"
+                    app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_upload"
+                    app:layout_constraintEnd_toEndOf="@+id/addphoto_btn_upload" />
 
-                    android:id="@+id/btnGallery"
-                    />
             </LinearLayout>
-            <RelativeLayout
+
+
+
+            <EditText
+                android:id="@+id/addphoto_edit_explain"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:padding="5dp"
-                android:layout_weight="9">
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    />
-                <ImageView
-                    android:visibility="gone"
-                    android:id="@+id/sharedImage"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/go"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    />
-            </RelativeLayout>
+                android:layout_height="80dp"
+                android:layout_above="@id/addphoto_btn_gallery"
+                android:layout_margin="16dp"
+                android:hint="내용을 입력하세요"
+                android:inputType="text"
+                app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_gallery"
+                tools:layout_editor_absoluteX="16dp" />
+
+            <Button
+                android:id="@+id/addphoto_btn_upload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/grey_time"
+                android:text="업로드"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
 
 
 

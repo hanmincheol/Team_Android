@@ -15,6 +15,7 @@ public class Training implements Serializable{
     private String eVideoPath;
     private String eContent;
     private String eType;
+    private String calories_per_hour;
     private String postDate;
 
 }

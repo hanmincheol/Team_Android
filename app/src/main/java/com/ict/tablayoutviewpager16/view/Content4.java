@@ -248,15 +248,7 @@ public class Content4 extends Fragment implements Content2.OnDataTransferListene
         youtuberecyclerView.setAdapter(youTubeVideoAdapter);
 
 
-        //2번용(프래그먼트->프래그먼트) 데이타 받기
-        if(((Content2)findFragmentByClass(Content2.class)) !=null){
-            //dataTransfer이벤트(내가 만든 이벤트)가 발생할때마다(TabContent1에서 버튼 클릭시:onDataTransfer()메소드를 호출할 때마다)
-            //data->binding.textView.setText(data)이 실행된다
-            //이벤트(인터페이스)가 등록된 프래그먼트의 세터 호출
-            //((MainActivity)getActivity()).content1.setOnDataTransferListener(data->binding.textView.setText(data));
-            ((Content2)findFragmentByClass(Content2.class)).setOnDataTransferListener(data->binding.textView.setText(data));
-            Log.i("com.ict.tablayoutviewpager16","클래스:"+findFragmentByClass(Content2.class));
-        }
+
 
 
 
