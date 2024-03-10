@@ -64,7 +64,7 @@ public class RecommFoodAdapter extends RecyclerView.Adapter<RecommFoodAdapter.vi
 
         public void bind(int position) {
             titleTxt.setText(items.get(position).getFOODNAME());
-            calorieTxt.setText(items.get(position).getCalory() + "Kcal");
+            calorieTxt.setText(items.get(position).getCALORY());
             Glide.with(context)
                     .load(items.get(position).getRECIPE_IMG())
                     .transform(new CenterCrop(), new RoundedCorners(30))

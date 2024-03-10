@@ -17,4 +17,5 @@
     <color name="red">#EB4D4D</color>
     <color name="blue_grey">#2E4858</color>
     <color name="grey">#F5F5F5</color>
+    <color name="grey_time">#FAFAFA</color>
 </resources>

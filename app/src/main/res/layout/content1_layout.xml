@@ -74,18 +74,29 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="match_parent"
-                android:layout_height="296dp">
+            <androidx.cardview.widget.CardView
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/grey_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <CalendarView
+                    android:id="@+id/calendarView"
+                    android:backgroundTint="@color/grey"
+                    android:layout_width="match_parent"
+                    android:layout_height="310dp"
+                    >
 
-            </CalendarView>
+                </CalendarView>
+            </androidx.cardview.widget.CardView>
 
 
-            <ListView
+
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/eventListView"
                 android:layout_width="match_parent"
                 android:layout_height="360dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="5" />
 
         </LinearLayout>

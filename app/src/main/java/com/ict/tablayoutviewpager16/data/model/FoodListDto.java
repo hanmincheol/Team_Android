@@ -25,7 +25,7 @@ public class FoodListDto implements Serializable {
     private String recipe_seq;
     private String INGREDIENT;
     private String RI_AMOUNT;
-    private String calory;
+    private String CALORY;
     private String carbohydrate;
     private String protein;
     private String fat;
@@ -45,7 +45,7 @@ public class FoodListDto implements Serializable {
                 ", recipe_seq='" + recipe_seq + '\'' +
                 ", INGREDIENT='" + INGREDIENT + '\'' +
                 ", RI_AMOUNT='" + RI_AMOUNT + '\'' +
-                ", calory='" + calory + '\'' +
+                ", calory='" + CALORY + '\'' +
                 ", carbohydrate='" + carbohydrate + '\'' +
                 ", protein='" + protein + '\'' +
                 ", fat='" + fat + '\'' +

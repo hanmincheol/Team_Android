@@ -136,8 +136,8 @@ public class RecommFood extends AppCompatActivity {
                         // 서버에 데이터 전송
                         sendDataToServer(dataToSave);
 
-                        Intent intent = new Intent(RecommFood.this, Content2.class);
-                        intent.putExtra("mealType", mealType);
+                        Intent intent = new Intent(RecommFood.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });

@@ -64,17 +64,17 @@
                 app:layout_constraintStart_toEndOf="@+id/starTxt"
                 app:layout_constraintTop_toTopOf="@+id/starTxt" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/textView8"
                 android:layout_width="44dp"
                 android:layout_height="39dp"
-                android:text="+"
+                android:src="@drawable/search_icon"
                 android:gravity="center"
-                android:textSize="30sp"
-                android:textColor="@color/white"
+                android:padding="10dp"
                 android:background="@drawable/plus_background"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/calorieTxt"

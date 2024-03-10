@@ -7,6 +7,7 @@ import com.ict.tablayoutviewpager16.data.model.FoodListDto;
 import com.ict.tablayoutviewpager16.data.model.MemberDto;
 import com.ict.tablayoutviewpager16.data.model.Post;
 import com.ict.tablayoutviewpager16.data.model.ProfileUser;
+import com.ict.tablayoutviewpager16.data.model.SCHDto;
 import com.ict.tablayoutviewpager16.data.model.Training;
 import com.ict.tablayoutviewpager16.data.model.UserProfileFriend;
 
@@ -68,4 +69,7 @@ public interface ApiService {
 
     @POST("http://192.168.0.107:4000/Dietfood/SaveBulk.do")
     Call<Void> sendDataToServer(@Body List<Map<String, Object>> dataToSave);
+
+    @POST("sch/seleteAnyAll.do")
+    Call<List<SCHDto>> getEventsForDate(@Body Map<String, Object> requestBody);
 }

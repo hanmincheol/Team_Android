@@ -59,6 +59,7 @@ public class DetailCommunity extends AppCompatActivity {
         Glide.with(DetailCommunity.this)
                 .load(object.getProfilepath())
                 .into(binding.detcommidprofile);
+        binding.detcontent.setText(object.getContent());
 
         // Post 객체의 파일 목록을 String 형식으로 변환하여 InnerAdapter에 전달
     }
