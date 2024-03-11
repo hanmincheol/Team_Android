@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements Content2.OnDataTr
         TabLayout tabLayout=binding.tabLayout;
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.home));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.diet_icon));
-        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.baseline_area_chart_24));
+        tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.baseline_add_box_24));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.fitness_icon));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.community_icon));
         //2.Fragment 생성후 컬렉션에 저장

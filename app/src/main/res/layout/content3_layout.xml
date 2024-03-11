@@ -73,59 +73,88 @@
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-            <ImageView
-                android:layout_marginTop="20dp"
-                android:id="@+id/addphoto_image"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_centerInParent="true"
-                app:layout_constraintBottom_toTopOf="@+id/addphoto_edit_explain"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="1dp" />
-
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-                <ImageView
-                    android:src="@drawable/ic_menu_gallery"
-                    android:id="@+id/addphoto_btn_gallery"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:text="갤러리에서 선택"
-                    app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_upload"
-                    app:layout_constraintStart_toStartOf="@+id/addphoto_btn_upload" />
-                <ImageView
-                    android:src="@drawable/ic_menu_camera"
-                    android:id="@+id/addphoto_btn_camera"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginLeft="80dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toLeftOf="@id/addphoto_btn_gallery"
-                    android:text="카메라로 촬영"
-                    app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_upload"
-                    app:layout_constraintEnd_toEndOf="@+id/addphoto_btn_upload" />
-
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Switch
+                    android:id="@+id/disclosure_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
+                    android:text="공개"
+                    android:checked="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addphoto_edit_explain"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
             </LinearLayout>
 
 
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+                <ImageView
+
+                    android:id="@+id/addphoto_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:padding="50dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/noimage"
+                    android:background="@drawable/addpostpage"
+                    app:layout_constraintBottom_toTopOf="@+id/addphoto_edit_explain"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints"
+                    tools:layout_editor_absoluteX="1dp" />
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/camera_bg"
+                    >
+
+                    <ImageView
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/gallery"
+                        android:id="@+id/addphoto_btn_gallery"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentBottom="true"
+                        android:text="갤러리에서 선택"
+                        app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_upload"
+                        app:layout_constraintStart_toStartOf="@+id/addphoto_btn_upload" />
+                    <ImageView
+                        android:src="@drawable/camera"
+                        android:id="@+id/addphoto_btn_camera"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toLeftOf="@id/addphoto_btn_gallery"
+                        android:text="카메라로 촬영"
+                        app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_upload"
+                        app:layout_constraintEnd_toEndOf="@+id/addphoto_btn_upload" />
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <EditText
                 android:id="@+id/addphoto_edit_explain"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="60dp"
                 android:layout_above="@id/addphoto_btn_gallery"
                 android:layout_margin="16dp"
-                android:hint="내용을 입력하세요"
+                android:hint="content"
                 android:inputType="text"
                 app:layout_constraintBottom_toTopOf="@+id/addphoto_btn_gallery"
                 tools:layout_editor_absoluteX="16dp" />
@@ -134,15 +163,11 @@
                 android:id="@+id/addphoto_btn_upload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/my_secondary"
                 android:layout_alignParentBottom="true"
-                android:background="@color/grey_time"
-                android:text="업로드"
+                android:text="Upload"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent" />
-
-
-
-
-
 
         </LinearLayout>
     </ScrollView>

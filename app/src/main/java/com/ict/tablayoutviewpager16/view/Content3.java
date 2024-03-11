@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -62,6 +63,7 @@ public class Content3 extends Fragment {
     private Context context;
     private File capturedImageFile;
     private ImageView imageView;
+    private Switch disclosureSwitch;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -69,6 +71,7 @@ public class Content3 extends Fragment {
         addPhotoImageView = view.findViewById(R.id.addphoto_image);
         explainEditText = view.findViewById(R.id.addphoto_edit_explain);
         uploadButton = view.findViewById(R.id.addphoto_btn_upload);
+        disclosureSwitch = view.findViewById(R.id.disclosure_switch);
 
         context = getActivity();
 
@@ -175,11 +178,14 @@ public class Content3 extends Fragment {
         String explainText = explainEditText.getText().toString();
         String username = LocalStorage.getUsername(context);
 
+        // 스위치 상태에 따라 disclosureYN 값 설정
+        String disclosureValue = disclosureSwitch.isChecked() ? "Y" : "N";
+
         // 텍스트 데이터를 RequestBody로 변환
         RequestBody id = RequestBody.create(MediaType.parse("text/plain"), username);
         RequestBody content = RequestBody.create(MediaType.parse("text/plain"), explainText);
         RequestBody hashTag = RequestBody.create(MediaType.parse("text/plain"), "#안드로이드");
-        RequestBody disclosureYN = RequestBody.create(MediaType.parse("text/plain"), "Y");
+        RequestBody disclosureYN = RequestBody.create(MediaType.parse("text/plain"), disclosureValue);
         RequestBody type = RequestBody.create(MediaType.parse("text/plain"), "4");
 
         // 이미지 파일 준비
