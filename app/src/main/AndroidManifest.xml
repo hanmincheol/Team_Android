@@ -57,7 +57,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false"/>
         <activity
             android:name=".Login"
             android:exported="false" />
@@ -70,6 +70,17 @@
         <activity
             android:name=".Challenge"
             android:exported="false" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.ict.tablayoutviewpager16.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
     </application>
+
 
 </manifest>
