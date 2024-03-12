@@ -48,22 +48,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
             // NullPointerException이 발생했을 때 로그를 남깁니다.
             Log.e("EventAdapter", "NullPointerException occurred: " + e.getMessage());
 
-            // 예외가 발생했을 때 홀더를 null로 설정합니다.
-            holder = null;
         }
 
-        // 홀더가 null이 아닌 경우에만 클릭 이벤트 설정
-        if (holder != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // 클릭한 이벤트에 대한 처리
-                    Intent intent = new Intent(context, DetailExercise.class);
-                    intent.putExtra("eventId", item.getId()); // 이벤트 ID를 인텐트에 추가하여 상세 화면으로 전달
-                    context.startActivity(intent);
-                }
-            });
-        }
     }
 
     @Override

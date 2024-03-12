@@ -52,7 +52,7 @@
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         >
         <!-- 탭메뉴 구성용
              activity_layout.xml 디자인 탭에서 TabLayout검색후

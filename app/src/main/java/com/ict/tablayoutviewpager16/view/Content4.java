@@ -28,6 +28,7 @@ import com.ict.tablayoutviewpager16.LocalStorage;
 import com.ict.tablayoutviewpager16.Login;
 import com.ict.tablayoutviewpager16.MyPage;
 import com.ict.tablayoutviewpager16.R;
+import com.ict.tablayoutviewpager16.Walking;
 import com.ict.tablayoutviewpager16.data.model.ExerciseRequest;
 import com.ict.tablayoutviewpager16.data.model.Training;
 import com.ict.tablayoutviewpager16.data.model.YoutubeVideo;
@@ -49,7 +50,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 //1]Fragement상속
 //※androidx.fragment.app.Fragment 상속
-public class Content4 extends Fragment implements Content2.OnDataTransferListener{
+public class Content4 extends Fragment {
 
 
     private RecyclerView recyclerView;
@@ -61,6 +62,7 @@ public class Content4 extends Fragment implements Content2.OnDataTransferListene
     private TrainAdapter trainAdapter;
     private ArrayList<Training> trainingItems;
     private ImageView imageView;
+    private ImageView imageViewWalking;
     private TextView textView;
     private Content4LayoutBinding binding;
     private Context context;
@@ -158,6 +160,23 @@ public class Content4 extends Fragment implements Content2.OnDataTransferListene
                 if (username != null) {
                     // 로컬 스토리지에 아이디가 있을 경우 MyPage로 이동
                     Intent intent = new Intent(getActivity(), MyPage.class);
+                    startActivity(intent);
+                } else {
+                    // 로컬 스토리지에 아이디가 없을 경우 LoginActivity로 이동
+                    Toast.makeText(getContext(), "로그인 후 이용하세요", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getActivity(), Login.class);
+                    startActivity(intent);
+                }
+            }
+        });
+        imageViewWalking = view.findViewById(R.id.filterBtn);
+        imageViewWalking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // SharedPreferences를 사용하여 로컬 스토리지에 저장된 아이디를 가져옴
+                if (username != null) {
+                    // 로컬 스토리지에 아이디가 있을 경우 MyPage로 이동
+                    Intent intent = new Intent(getActivity(), Walking.class);
                     startActivity(intent);
                 } else {
                     // 로컬 스토리지에 아이디가 없을 경우 LoginActivity로 이동
@@ -266,11 +285,7 @@ public class Content4 extends Fragment implements Content2.OnDataTransferListene
         binding=null;//인스턴스 참조를 null로 설정
     }
     //2번)프래그먼트->프래그먼트에서 전송한 데이타 받기
-    @Override
-    public void onDataTransfer(String data) {
-        Log.i("com.ict.tablayoutviewpager16","Content3의 onDataTransfer:data:"+data);
-        binding.textView.setText(data);
-    }
+
 
     // 클래스명을 기반으로 프래그먼트를 찾는 메서드
     private Fragment findFragmentByClass(Class fragmentClass) {

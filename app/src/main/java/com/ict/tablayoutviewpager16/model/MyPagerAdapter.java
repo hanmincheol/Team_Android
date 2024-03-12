@@ -22,11 +22,6 @@ public class MyPagerAdapter extends FragmentStateAdapter {
         this.fragments=fragments;
     }
 
-
-
-    //탭 메뉴의 position에 해당하는 프래그먼트를 반환.
-    //앱 최초 실행후 탭 메뉴 클릭시 viewPager2.setCurrentItem(탭메뉴 인덱스); 호출하면 아래 createFragment가 호출된다
-    //단, 모든 Fragment가 ViewPager에 전달된 후에는 더 이상 호출되지 않는다.
     @NonNull
     @Override
     public Fragment createFragment(int position) {
