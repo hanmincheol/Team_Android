@@ -130,41 +130,54 @@ public class Content3 extends Fragment {
     }
 
     private String getRealPathFromURI(Uri contentUri) {
+        // 이미지 파일 경로를 가져오기 위한 배열 설정
         String[] proj = { MediaStore.Images.Media.DATA };
+        // contentUri를 사용하여 컨텐트 프로바이더로부터 쿼리하여 Cursor 객체 획득
         Cursor cursor = requireActivity().getContentResolver().query(contentUri, proj, null, null, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         String path = ((Cursor) cursor).getString(column_index);
         cursor.close();
+        // 이미지 파일의 실제 경로 반환
         return path;
     }
 
     private void pickImageFromGallery() {
+        // 갤러리에서 이미지를 선택하는 메서드입니다.
+        // 이미지를 선택하기 위한 ACTION_PICK 인텐트 생성
         Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
+        intent.setType("image/*"); // 이미지 타입 지정
+        // 갤러리 앱을 실행하고 선택한 이미지의 결과를 처리하기 위해 galleryLauncher로 인텐트 실행
         galleryLauncher.launch(intent);
         Log.d("Content3", "pickImageFromGallery() called");
     }
 
     private void captureImageWithCamera() {
+        // 현재 시간을 기반으로 파일 이름 생성
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String photoFileName = dateFormat.format(new Date()) + "_camera.png";
 
+        // 이미지를 저장할 디렉토리 지정
         File storageDir = requireContext().getExternalFilesDir(Environment.DIRECTORY_DCIM);
         try {
+            // 임시 파일 생성
             capturedImageFile = File.createTempFile(photoFileName, ".png", storageDir);
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // 오류 발생 시 스택 트레이스 출력
         }
 
+        // 임시 파일이 생성되었는지 확인
         if (capturedImageFile != null) {
+            // Android 7.0 이상에서는 FileProvider를 사용하여 URI를 생성해야 함
             selectedImageUri = FileProvider.getUriForFile(requireContext(), "com.ict.tablayoutviewpager16.fileprovider", capturedImageFile);
+
+            // 카메라 앱을 실행하기 위한 인텐트 생성
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, selectedImageUri);
-            cameraLauncher.launch(intent);
-            Log.d("Content3", "captureImageWithCamera() called");
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, selectedImageUri); // 촬영한 이미지를 저장할 파일의 URI를 인텐트에 추가
+            cameraLauncher.launch(intent); // 카메라 앱 실행
+            Log.d("Content3", "captureImageWithCamera() called"); // 로그에 메서드 호출을 기록
         } else {
-            Log.e("Content3", "Failed to create image file");
+            Log.e("Content3", "Failed to create image file"); // 이미지 파일 생성 실패 시 에러 로그 출력
         }
     }
 

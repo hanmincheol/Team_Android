@@ -108,9 +108,8 @@ public class Walking extends AppCompatActivity implements OnMapReadyCallback, Go
                         })
                         .setNegativeButton("아니오",(dialog,which)->finish()).show();
             }
-            else{//앱 최초 실행시( 이후 다시 앱 실행시에는 requestUserPermissions()안에서 권한 체크해서 허용됬으면 묻는 권한창이 뜨지 않는다)
+            else{//앱 최초 실행
                 if(requestUserPermissions()){//사용자가 위치 서비스 권한을 허용시
-                    //현재 앱에서는 권한 허용시 할 일이 없다(예:비활성화 시킨 위젯 활성화등)
                 }
             }
         }////if
@@ -126,6 +125,7 @@ public class Walking extends AppCompatActivity implements OnMapReadyCallback, Go
             }
         });
     }////onCreate
+
     //사용자에게 권한을 요청하는 메소드(안드로이드 6.0(API LEVEL 23)이상부터 추가됨)
     private boolean requestUserPermissions(){
         //앱 관련 권한의 유무여부 파악
