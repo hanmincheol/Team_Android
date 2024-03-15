@@ -219,7 +219,7 @@ public class Content3 extends Fragment {
             public void onResponse(Call<Integer> call, Response<Integer> response) {
                 if (response.isSuccessful()) {
                     int affected = response.body();
-                    Toast.makeText(requireContext(), "이미지가 업로드되었습니다. 영향을 받은 행 수: " + affected, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "이미지가 업로드되었습니다.", Toast.LENGTH_SHORT).show();
                     Log.d("Content3", "sendImageToServer() called. Affected rows: " + affected);
                     // 이미지 전송 후 값 초기화
                     capturedImageFile = null;
