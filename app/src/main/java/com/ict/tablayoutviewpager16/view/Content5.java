@@ -63,6 +63,7 @@ public class Content5 extends Fragment implements Content2.OnDataTransferListene
     private ArrayList<Profile> profileItems;
 
     private Context context;
+    private TextView loginIdTextView;
 
     @SuppressLint("WrongViewCast")
     @Nullable
@@ -72,6 +73,17 @@ public class Content5 extends Fragment implements Content2.OnDataTransferListene
         View view = binding.getRoot();
 
         context = getActivity();
+
+        loginIdTextView = view.findViewById(R.id.loginId);
+
+        String username = LocalStorage.getUsername(context);
+        if (username != null && !username.isEmpty()) {
+            loginIdTextView.setText(username);
+        } else {
+            loginIdTextView.setText("UserID");
+        }
+
+
 
 
         imageView = view.findViewById(R.id.mypage);
@@ -157,7 +169,6 @@ public class Content5 extends Fragment implements Content2.OnDataTransferListene
                 .build();
 
         ApiService apiServicePro = retrofitPro.create(ApiService.class);
-        String username = LocalStorage.getUsername(context);
 
         Call<Map<String, Object>> callPro = apiServicePro.updateUserProfile(username);
         callPro.enqueue(new Callback<Map<String, Object>>() {

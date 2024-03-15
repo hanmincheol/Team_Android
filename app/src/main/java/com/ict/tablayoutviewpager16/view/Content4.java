@@ -66,6 +66,7 @@ public class Content4 extends Fragment {
     private TextView textView;
     private Content4LayoutBinding binding;
     private Context context;
+    private TextView loginIdTextView;
 
     public Content4() {
     }
@@ -75,6 +76,15 @@ public class Content4 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = Content4LayoutBinding.inflate(inflater,container,false);
         View view = binding.getRoot();
+
+        loginIdTextView = view.findViewById(R.id.loginId);
+
+        String username = LocalStorage.getUsername(context);
+        if (username != null && !username.isEmpty()) {
+            loginIdTextView.setText(username);
+        } else {
+            loginIdTextView.setText("UserID");
+        }
 
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.swipeView);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -139,8 +149,6 @@ public class Content4 extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-
-        String username = LocalStorage.getUsername(context);
 
         textView = view.findViewById(R.id.challengeMore);
         textView.setOnClickListener(new View.OnClickListener() {

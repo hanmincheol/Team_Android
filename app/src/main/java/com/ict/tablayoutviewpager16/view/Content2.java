@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,12 +55,23 @@ public class Content2 extends Fragment {
     private ArrayList<Category> categoryItems;
     private Context context;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private TextView loginIdTextView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = Content2LayoutBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+
+        loginIdTextView = view.findViewById(R.id.loginId);
+
+        String username = LocalStorage.getUsername(context);
+        if (username != null && !username.isEmpty()) {
+            loginIdTextView.setText(username);
+        } else {
+            loginIdTextView.setText("UserID");
+        }
+
 
         imageView = view.findViewById(R.id.mypage);
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +102,7 @@ public class Content2 extends Fragment {
 
         ApiService apiService = retrofit.create(ApiService.class);
 
-        String username = LocalStorage.getUsername(context);
+
         Call<List<Diets>> call = apiService.getDailyDiet(username);
         call.enqueue(new Callback<List<Diets>>() {
             @Override
@@ -111,6 +123,7 @@ public class Content2 extends Fragment {
                 // 서버 요청이 실패한 경우에 대한 처리
             }
         });
+
 
         recyclerViewCat = view.findViewById(R.id.categoryView);
         recyclerViewCat.setLayoutManager(new GridLayoutManager(getActivity(),4));

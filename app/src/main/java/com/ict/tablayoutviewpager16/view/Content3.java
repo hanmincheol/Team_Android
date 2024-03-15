@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -64,6 +65,7 @@ public class Content3 extends Fragment {
     private File capturedImageFile;
     private ImageView imageView;
     private Switch disclosureSwitch;
+    private TextView loginIdTextView;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,8 +74,18 @@ public class Content3 extends Fragment {
         explainEditText = view.findViewById(R.id.addphoto_edit_explain);
         uploadButton = view.findViewById(R.id.addphoto_btn_upload);
         disclosureSwitch = view.findViewById(R.id.disclosure_switch);
+        loginIdTextView = view.findViewById(R.id.loginId);
+
 
         context = getActivity();
+        String username = LocalStorage.getUsername(context);
+
+        if (username != null && !username.isEmpty()) {
+            loginIdTextView.setText(username);
+        } else {
+            loginIdTextView.setText("UserID");
+        }
+
 
         // 갤러리에서 이미지 선택 버튼 클릭 리스너 설정
         view.findViewById(R.id.addphoto_btn_gallery).setOnClickListener(v -> {

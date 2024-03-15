@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,7 @@ public class Content1 extends Fragment {
     private CalendarView calendarView;
     private RecyclerView eventRecyclerView;
     private EventAdapter eventAdapter;
+    private TextView loginIdTextView;
     private ArrayList<SCHDto> eventList = new ArrayList<>();
 
     // 서버에서 가져온 이벤트를 저장할 리스트
@@ -60,6 +62,16 @@ public class Content1 extends Fragment {
         eventAdapter = new EventAdapter(eventList);
         eventRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         eventRecyclerView.setAdapter(eventAdapter);
+
+        loginIdTextView = view.findViewById(R.id.loginId);
+
+        String username = LocalStorage.getUsername(context);
+        if (username != null && !username.isEmpty()) {
+            loginIdTextView.setText(username);
+        } else {
+            loginIdTextView.setText("UserID");
+        }
+
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
